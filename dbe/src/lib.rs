@@ -7,9 +7,9 @@
 use core::convert::TryInto;
 
 #[cfg(any(feature = "aes", feature = "aes-std"))]
-use aes::cipher::{KeyIvInit, StreamCipher, StreamCipherError};
+use aes_encrypt::cipher::{KeyIvInit, StreamCipher, StreamCipherError};
 #[cfg(any(feature = "aes", feature = "aes-std"))]
-use aes::{Aes128, Aes192, Aes256};
+use aes_encrypt::{Aes128, Aes192, Aes256};
 
 #[cfg(not(feature = "std"))]
 extern crate alloc;
@@ -343,22 +343,26 @@ impl prost::Message for Encryption {
 
 /// AES-128 in CTR mode
 #[cfg(any(feature = "aes", feature = "aes-std"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "aes", feature = "aes-std"))))]
 pub type Aes128Ctr = ctr::Ctr64BE<Aes128>;
 
 /// AES-192 in CTR mode
 #[cfg(any(feature = "aes", feature = "aes-std"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "aes", feature = "aes-std"))))]
 pub type Aes192Ctr = ctr::Ctr64BE<Aes192>;
 
 /// AES-256 in CTR mode
 #[cfg(any(feature = "aes", feature = "aes-std"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "aes", feature = "aes-std"))))]
 pub type Aes256Ctr = ctr::Ctr64BE<Aes256>;
 
 /// Aes error
 #[cfg(any(feature = "aes", feature = "aes-std"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "aes", feature = "aes-std"))))]
 #[derive(Debug, Copy, Clone)]
 pub enum AesError {
   /// Invalid length
-  InvalidLength(aes::cipher::InvalidLength),
+  InvalidLength(aes_encrypt::cipher::InvalidLength),
   /// Invalid key size
   KeySizeError(usize),
   /// Stream cipher error
@@ -588,13 +592,12 @@ pub fn encrypt_to_vec(
   _iv: &[u8],
   algo: EncryptionAlgorithm,
 ) -> Result<Vec<u8>, EncryptError> {
-  
   match algo {
     #[cfg(any(feature = "aes", feature = "aes-std"))]
     EncryptionAlgorithm::Aes => {
       let mut dst = src.to_vec();
       aes_encrypt_in(dst.as_mut(), _key, _iv).map(|_| dst)
-    },
+    }
     _ => Ok(src.to_vec()),
   }
 }
