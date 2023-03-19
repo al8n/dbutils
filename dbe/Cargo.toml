@@ -26,6 +26,10 @@ prost = { workspace = true, optional = true }
 rand = { version = "0.8", default-features = false }
 serde = { workspace = true, optional = true }
 
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
 [dev-dependencies]
 
 
