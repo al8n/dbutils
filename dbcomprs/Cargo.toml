@@ -8,7 +8,7 @@ homepage = { workspace = true }
 description = "Compress utils for developing database"
 
 [features]
-default = ["std"]
+default = ["std", "snappy", "lz4"]
 std = ["bytes/std"]
 
 # enable snappy compression

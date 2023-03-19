@@ -8,7 +8,7 @@ homepage = { workspace = true }
 description = "Encrypt utils for developing database"
 
 [features]
-default = ["std"]
+default = ["std", "aes-std"]
 std = ["rand/default", "prost/std", "bytes/std"]
 
 # enable aes encryption
