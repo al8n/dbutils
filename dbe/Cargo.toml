@@ -1,0 +1,32 @@
+[package]
+name = "dbe"
+version = { workspace = true } 
+edition = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+description = "Encrypt utils for developing database"
+
+[features]
+default = ["std"]
+std = ["rand/default", "prost/std", "bytes/std"]
+
+# enable aes encryption
+aes = ["aes/zeroize", "ctr/zeroize"]
+aes-std = ["aes", "ctr/std", "rand/default"]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+
+[dependencies]
+aes = { version = "0.8", optional = true, default-features = false }
+bytes = { workspace = true }
+ctr = { version = "0.9", optional = true, default-features = false }
+prost = { workspace = true, optional = true }
+rand = { version = "0.8", default-features = false }
+serde = { workspace = true, optional = true }
+
+[dev-dependencies]
+
+
+

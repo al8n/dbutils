@@ -1,0 +1,30 @@
+[package]
+name = "dbcomprs"
+version = { workspace = true } 
+edition = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+description = "Compress utils for developing database"
+
+[features]
+default = ["std"]
+std = ["bytes/std"]
+
+# enable snappy compression
+snappy = ["snap", "std"]
+
+# enable zstd compression
+zstd = ["zstd_compression", "std"]
+
+# enable lz4 compression
+lz4 = ["lz4_flex"]
+lz4-std = ["lz4", "lz4_flex/default"]
+
+[dependencies]
+bytes = { workspace = true }
+prost = { workspace = true, optional = true }
+serde = { workspace = true, optional = true }
+lz4_flex = { version = "0.10", default-features = false, optional = true }
+snap = { version = "1", optional = true }
+zstd_compression = { package = "zstd", version = "0.12.3+zstd.1.5.2", optional = true }

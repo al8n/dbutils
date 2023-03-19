@@ -1,13 +1,19 @@
 [workspace]
 members = [
-  "crates/*"
+  "dbcomprs",
+  "dbe",
 ]
 
 
 [workspace.package]
-version = "0.0.0"
+version = "0.1.0"
 edition = "2021"
-repository = "https://github.com/al8n/crates"
-homepage = "https://github.com/al8n/crates"
+repository = "https://github.com/al8n/dbutils"
+homepage = "https://github.com/al8n/dbutils"
 license = "Apache-2.0/MIT"
 
+
+[workspace.dependencies]
+bytes = { version = "1.4", default-features = false }
+prost = { version = "0.11", default-features = false, features = ["prost-derive"] }
+serde = { version = "1", default-features = false, features = ["derive"] }
