@@ -1,0 +1,16 @@
+[package]
+name = "dbutils"
+version = { workspace = true } 
+edition = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+description = "Utils for developing database"
+
+
+[features]
+default = ["std"]
+std = []
+
+[dependencies]
+bytes = { workspace = true }
