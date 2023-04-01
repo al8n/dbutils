@@ -147,10 +147,11 @@ impl prost::Message for IV {
 }
 
 /// Encryption algorithm.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
 #[cfg_attr(feature = "serde", serde(rename_all = "PascalCase"))]
-#[repr(i32)]
+#[cfg_attr(feature = "prost", derive(::prost::Enumeration))]
+#[repr(u8)]
 pub enum EncryptionAlgorithm {
   /// None.
   None = 0,

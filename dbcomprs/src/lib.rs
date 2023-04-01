@@ -51,7 +51,7 @@ impl Compressor for DefaultCompressor {
 #[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
 #[cfg_attr(feature = "serde", serde(rename_all = "PascalCase"))]
 #[cfg_attr(feature = "prost", derive(::prost::Enumeration))]
-#[repr(i32)]
+#[repr(u8)]
 pub enum CompressionAlgorithm {
   /// None mode indicates that a block is not compressed.
   None = 0,
